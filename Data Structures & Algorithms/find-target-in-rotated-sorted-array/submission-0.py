@@ -1,0 +1,24 @@
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        l,r = 0,len(nums)-1
+
+        while l<=r:
+            mid = l+(r-l)//2
+
+            if nums[mid] >= nums[l]: # larger sorted array l-> mid
+                if target >= nums[l] and target <= nums[mid]:
+                    r = mid
+                else:
+                    l = mid + 1
+                    
+            elif nums[mid] <= nums[l]: # smaller sorted array mid->r
+                if target >= nums[mid] and target <= nums[r]:
+                    l = mid
+                else:
+                    r = mid - 1
+
+            if nums[mid] == target:
+                return mid
+        
+        return -1
+        
